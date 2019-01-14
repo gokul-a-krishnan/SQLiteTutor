@@ -40,6 +40,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         Bnview.setOnClickListener(this);
         Bnupdate = view.findViewById(R.id.bn_updatecontact);
         Bnupdate.setOnClickListener(this);
+        Bndelete = view.findViewById(R.id.bn_deletecontact);
+        Bndelete.setOnClickListener(this);
         return view;
     }
 
@@ -54,6 +56,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
                 break;
             case R.id.bn_updatecontact:
                 dbOperationListener.DbOperationPerformed(2);
+                break;
+            case R.id.bn_deletecontact:
+                dbOperationListener.DbOperationPerformed(3);
                 break;
         }
     }
