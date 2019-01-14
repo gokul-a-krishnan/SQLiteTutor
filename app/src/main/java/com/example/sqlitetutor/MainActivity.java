@@ -7,19 +7,17 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private int i;
-    private TextView textView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        textView = findViewById(R.id.textview);
-        i = 1;
+        if (findViewById(R.id.fragment_container) != null){
+            if (savedInstanceState != null){
+                return;
+            }
+            HomeFragment homeFragment = new HomeFragment();
+            getSupportFragmentManager().beginTransaction().add(R.id.fragment_container,homeFragment).commit();
+        }
     }
 
-    public void updateText(View view) {
-        textView.setText("Clicked: "+i);
-        i++;
-    }
 }
