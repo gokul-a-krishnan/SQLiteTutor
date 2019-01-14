@@ -36,6 +36,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         Bnadd = view.findViewById(R.id.bn_addcontact);
         Bnadd.setOnClickListener(this);
+        Bnview = view.findViewById(R.id.bn_viewcontact);
+        Bnview.setOnClickListener(this);
         return view;
     }
 
@@ -44,6 +46,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener{
         switch (v.getId()){
             case R.id.bn_addcontact:
                 dbOperationListener.DbOperationPerformed(0);
+                break;
+            case R.id.bn_viewcontact:
+                dbOperationListener.DbOperationPerformed(1);
                 break;
         }
     }

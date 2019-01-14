@@ -2,6 +2,7 @@ package com.example.sqlitetutor;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -46,4 +47,9 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         Log.d("Database Operation","Row inserted....");
     }
 
+    public Cursor readContact(SQLiteDatabase db){
+        String[] projections = {ContactContract.ContactEntry.CONTACT_ID,ContactContract.ContactEntry.NAME,ContactContract.ContactEntry.EMAIL};
+        Cursor cursor = db.query(ContactContract.ContactEntry.TABLE_NAME,projections,null,null,null,null,null);
+        return cursor;
+    }
 }

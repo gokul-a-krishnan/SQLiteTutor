@@ -30,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements HomeFragment.DbOp
             case 0:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new AddContactFragment()).addToBackStack(null).commit();
                 break;
+            case 1:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ViewContactFragment()).addToBackStack(null).commit();
+                break;
         }
     }
 }
