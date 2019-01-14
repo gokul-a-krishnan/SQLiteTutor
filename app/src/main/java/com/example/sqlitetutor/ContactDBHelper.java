@@ -52,4 +52,13 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.query(ContactContract.ContactEntry.TABLE_NAME,projections,null,null,null,null,null);
         return cursor;
     }
+
+    public void updateContact(int id,String name,String email,SQLiteDatabase db){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ContactContract.ContactEntry.NAME,name);
+        contentValues.put(ContactContract.ContactEntry.EMAIL,email);
+        String selection = ContactContract.ContactEntry.CONTACT_ID + " = " + id;
+        db.update(ContactContract.ContactEntry.TABLE_NAME,contentValues,selection,null);
+    }
+
 }
