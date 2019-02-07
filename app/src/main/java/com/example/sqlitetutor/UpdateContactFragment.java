@@ -44,16 +44,18 @@ public class UpdateContactFragment extends Fragment {
     }
 
     private void updateContact() {
-        int id = Integer.parseInt(editTextID.getText().toString());
         String name = editTextName.getText().toString();
-        String email = editTextName.getText().toString();
-        ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
-        SQLiteDatabase db = contactDBHelper.getWritableDatabase();
-        contactDBHelper.updateContact(id,name,email,db);
-        contactDBHelper.close();
-        Toast.makeText(getActivity(),"Contact Updated Sucessfully",Toast.LENGTH_SHORT).show();
-        editTextEmail.setText("");
-        editTextName.setText("");
-        editTextID.setText("");
+        String email = editTextEmail.getText().toString();
+        if ( !editTextID.getText().toString().isEmpty() && !name.isEmpty() && !email.isEmpty()) {
+            int id = Integer.parseInt(editTextID.getText().toString());
+            ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
+            SQLiteDatabase db = contactDBHelper.getWritableDatabase();
+            contactDBHelper.updateContact(id, name, email, db);
+            contactDBHelper.close();
+            Toast.makeText(getActivity(), "Contact Updated Successfully", Toast.LENGTH_SHORT).show();
+            editTextEmail.setText("");
+            editTextName.setText("");
+            editTextID.setText("");
+        }
     }
 }

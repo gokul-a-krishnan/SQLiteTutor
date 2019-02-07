@@ -39,7 +39,7 @@ public class ViewContactFragment extends Fragment {
         String info = "";
         Cursor cursor = contactDBHelper.readContact(db);
         while (cursor.moveToNext()){
-            String id = Integer.toString(cursor.getInt(cursor.getColumnIndex(ContactContract.ContactEntry.CONTACT_ID)));
+            String id = Integer.toString(cursor.getInt(cursor.getColumnIndex(ContactContract.ContactEntry.CONTACT_NO)));
             String name = cursor.getString(cursor.getColumnIndex(ContactContract.ContactEntry.NAME));
             String email = cursor.getString(cursor.getColumnIndex(ContactContract.ContactEntry.EMAIL));
             info = info + "\n\nId : " + id + "\nName : " + name + "\nEmail : " + email;

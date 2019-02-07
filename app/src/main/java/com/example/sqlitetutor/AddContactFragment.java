@@ -41,18 +41,20 @@ public class AddContactFragment extends Fragment implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bn_save:
-                int Id = Integer.parseInt(id.getText().toString());
                 String Name = name.getText().toString().trim();
                 String Email = email.getText().toString();
-                ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
-                SQLiteDatabase db = contactDBHelper.getWritableDatabase();
-                contactDBHelper.addContact(Id,Name,Email,db);
-                db.close();
-                id.setText("");
-                name.setText("");
-                email.setText("");
-                Toast.makeText(getActivity(),"Conatct Saved Sucessfully",Toast.LENGTH_SHORT).show();
-                break;
+                if ( !id.getText().toString().isEmpty() && !Name.isEmpty() && !Email.isEmpty()){
+                    int Id = Integer.parseInt(id.getText().toString());
+                    ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
+                    SQLiteDatabase db = contactDBHelper.getWritableDatabase();
+                    contactDBHelper.addContact(Id,Name,Email,db);
+                    db.close();
+                    id.setText("");
+                    name.setText("");
+                    email.setText("");
+                    Toast.makeText(getActivity(),"Conatct Saved Sucessfully",Toast.LENGTH_SHORT).show();
+                    break;
+                }
         }
     }
 }

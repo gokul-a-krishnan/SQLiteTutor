@@ -43,13 +43,15 @@ public class DeleteContactFragment extends Fragment {
     }
 
     private void deleteContact() {
-        int id = Integer.parseInt(editTextId.getText().toString());
-        ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
-        SQLiteDatabase db = contactDBHelper.getWritableDatabase();
-        contactDBHelper.deleteContact(id,db);
-        contactDBHelper.close();
-        editTextId.setText("");
-        Toast.makeText(getActivity(),"Contact Deleted Sucessfully",Toast.LENGTH_SHORT).show();
+        if(!editTextId.getText().toString().isEmpty()) {
+            int id = Integer.parseInt(editTextId.getText().toString());
+            ContactDBHelper contactDBHelper = new ContactDBHelper(getActivity());
+            SQLiteDatabase db = contactDBHelper.getWritableDatabase();
+            contactDBHelper.deleteContact(id, db);
+            contactDBHelper.close();
+            editTextId.setText("");
+            Toast.makeText(getActivity(), "Contact Deleted Sucessfully", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }

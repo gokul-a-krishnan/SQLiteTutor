@@ -14,9 +14,9 @@ public class ContactDBHelper extends SQLiteOpenHelper {
 
     public static final String CREATE_TABLE = "create table " +
             ContactContract.ContactEntry.TABLE_NAME + "(" +
-            ContactContract.ContactEntry.CONTACT_ID + " number," +
+            ContactContract.ContactEntry.CONTACT_NO + " number," +
             ContactContract.ContactEntry.NAME + " text," +
-            ContactContract.ContactEntry.EMAIL +" text);";
+            ContactContract.ContactEntry.EMAIL +" text);";// Create Table Query
 
     public static final String DROP_TABLE = "drop table if exists "+
             ContactContract.ContactEntry.TABLE_NAME;
@@ -40,7 +40,7 @@ public class ContactDBHelper extends SQLiteOpenHelper {
 
     public void addContact(int id, String name, String email, SQLiteDatabase db){
         ContentValues contentValues = new ContentValues();
-        contentValues.put(ContactContract.ContactEntry.CONTACT_ID,id);
+        contentValues.put(ContactContract.ContactEntry.CONTACT_NO,id);
         contentValues.put(ContactContract.ContactEntry.NAME,name);
         contentValues.put(ContactContract.ContactEntry.EMAIL,email);
         db.insert(ContactContract.ContactEntry.TABLE_NAME,null,contentValues);
@@ -48,8 +48,20 @@ public class ContactDBHelper extends SQLiteOpenHelper {
     }
 
     public Cursor readContact(SQLiteDatabase db){
-        String[] projections = {ContactContract.ContactEntry.CONTACT_ID,ContactContract.ContactEntry.NAME,ContactContract.ContactEntry.EMAIL};
-        Cursor cursor = db.query(ContactContract.ContactEntry.TABLE_NAME,projections,null,null,null,null,null);
+        String[] projections = {
+                ContactContract.ContactEntry.CONTACT_NO,
+                ContactContract.ContactEntry.NAME,
+                ContactContract.ContactEntry.EMAIL
+        };
+        Cursor cursor = db.query(
+                ContactContract.ContactEntry.TABLE_NAME,
+                projections,
+                null,
+                null,
+                null,
+                null,
+                null
+        );
         return cursor;
     }
 
@@ -57,12 +69,12 @@ public class ContactDBHelper extends SQLiteOpenHelper {
         ContentValues contentValues = new ContentValues();
         contentValues.put(ContactContract.ContactEntry.NAME,name);
         contentValues.put(ContactContract.ContactEntry.EMAIL,email);
-        String selection = ContactContract.ContactEntry.CONTACT_ID + " = " + id;
+        String selection = ContactContract.ContactEntry.CONTACT_NO + " = " + id;
         db.update(ContactContract.ContactEntry.TABLE_NAME,contentValues,selection,null);
     }
 
     public void deleteContact(int id,SQLiteDatabase db){
-        String selection = ContactContract.ContactEntry.CONTACT_ID + " = " +id;
+        String selection = ContactContract.ContactEntry.CONTACT_NO + " = " +id;
         db.delete(ContactContract.ContactEntry.TABLE_NAME,selection,null);
     }
 
